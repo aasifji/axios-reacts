@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { useRef, useState } from 'react';
+import FetchNews from './Components/FetchNews';
+// import './App.css';
+
+
 
 function App() {
+  const refElement = useRef("");
+  const[name,setname]=useState("Aasif")
+  console.log(refElement)
+  const Reset = ()=>{
+    setname("")
+    refElement.current.focus()
+
+  }
+  const handle = ()=>{
+    refElement.current.style.color="blue"  
+ refElement.current.value = "Imrana";
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <input type="text"  ref = {refElement} value={name} onChange={(e)=>setname(e.target.value)} />
+    <button onClick={Reset}>Reset</button>
+    <button onClick={handle}>Handle data</button>
+
+      {/* <UseState/> */}
+      <FetchNews/>
     </div>
   );
 }
